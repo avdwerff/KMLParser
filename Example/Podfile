@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'KMLParser_Example' do
+  pod 'KMLParser', :path => '../'
+
+  target 'KMLParser_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
