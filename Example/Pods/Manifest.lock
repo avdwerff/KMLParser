@@ -1,0 +1,16 @@
+PODS:
+  - KMLParser (0.1.0)
+
+DEPENDENCIES:
+  - KMLParser (from `../`)
+
+EXTERNAL SOURCES:
+  KMLParser:
+    :path: ../
+
+SPEC CHECKSUMS:
+  KMLParser: 68d85a0a9ba001b03aafe47456fb09e03c78fecd
+
+PODFILE CHECKSUM: dffbcafc9e6e128c5abca21e7605cad06939069a
+
+COCOAPODS: 1.1.1
