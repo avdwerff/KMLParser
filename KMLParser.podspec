@@ -9,16 +9,13 @@
 Pod::Spec.new do |s|
   s.name             = 'KMLParser'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of KMLParser.'
+  s.summary          = 'Swift KML parser base on the (NS)XMLParser found in Foundation'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This lib tries to simplify parsing a KML document, currently it supports the followin KML features:
+* Polygon, as well nested inner pollygons (inner boundaries of a Polygon)
+* Points
                        DESC
 
   s.homepage         = 'https://github.com/avdwerff/KMLParser'
@@ -37,6 +34,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
