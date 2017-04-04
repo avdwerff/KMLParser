@@ -394,7 +394,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
         guard let applicableStyles = styles[style] else { return nil }
         
         return
-            annotations.map { [weak self] annotation -> MKAnnotation in
+            annotations.map { annotation -> MKAnnotation in
             
                 if var styleable = annotation as? MKAnnotation & KMLStyleable {
                     styleable.styles.append(contentsOf: applicableStyles)
