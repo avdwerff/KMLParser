@@ -73,11 +73,14 @@ open class KMLParser: NSObject, XMLParserDelegate {
     
     /// End parsing
     public func parserDidEndDocument(_ parser: XMLParser) {
-        _ = features.flatMap { feature -> [MKAnnotation]? in
-                let annotations = feature.annotation()
-                if let styleId = feature.styleId {
-                    return applyStyles(styleId: styleId, annotations: annotations)
-                }
+        _ = features.flatMap { [weak self] feature -> [MKAnnotation]? in
+            
+            ///guard let `self` = self else { return annotations
+            
+                let styles = self?.styles(with: feature.styleId)
+            
+                let annotations = feature.annotation(styles: styles)
+
                 return annotations
             }
             .map {
@@ -383,25 +386,15 @@ open class KMLParser: NSObject, XMLParserDelegate {
     }
     
     ///
-    private func applyStyles(styleId: String, annotations: [MKAnnotation]?) -> [MKAnnotation]? {
+    private func styles(with styleId: String?) -> [KMLStyle]? {
         
-        guard
-            let annotations = annotations
-            else { return nil }
+        guard let styleId = styleId else { return nil }
         
         let style = styleMaps[styleId]?["normal"] ?? styleId
         
         guard let applicableStyles = styles[style] else { return nil }
         
-        return
-            annotations.map { annotation -> MKAnnotation in
-            
-                if var styleable = annotation as? MKAnnotation & KMLStyleable {
-                    styleable.styles.append(contentsOf: applicableStyles)
-                    return styleable
-                }
-                return annotation
-            }
+        return applicableStyles
     }
     
 }

@@ -134,7 +134,7 @@ extension MultiGeometry {
 protocol KMLFeature {
     var name: String? { get set }
     var description: String? { get set }
-    func annotation() -> [MKAnnotation]?
+    func annotation(styles: [KMLStyle]?) -> [MKAnnotation]?
     var styleId: String? { get set }
 }
 
@@ -145,18 +145,24 @@ struct Placemark: KMLFeature {
     var description: String?
     var geometry: Geometry?
     var styleId: String?
-    func annotation() -> [MKAnnotation]? {
+    func annotation(styles: [KMLStyle]?) -> [MKAnnotation]? {
         
         guard let geometry = geometry else { return nil }
         
         if let polygon = geometry as? Polygon {
-            return [KMLPolygon(coordinates: polygon.outerBoundaryIs.coordinates, count: polygon.outerBoundaryIs.coordinates.count, interiorPolygons: nil)]
+            let poly = KMLPolygon(
+                coordinates: polygon.outerBoundaryIs.coordinates,
+                count: polygon.outerBoundaryIs.coordinates.count,
+                interiorPolygons: nil
+            )
+            poly.styles = styles ?? []
+            return [poly]
         } else if let point = geometry as? Point {
             return [KMLAnnotation(coordinate: point.coordinate, title: self.name ?? "", subtitle: self.description ?? "")]
         } else if let multi = geometry as? MultiGeometry {
             return
                 multi.elements.flatMap({ (element) -> MKAnnotation? in
-                    map(element: element, name: name, description: description)
+                    map(element: element, name: name, description: description, styles: styles)
                 })
         }
         
@@ -164,10 +170,12 @@ struct Placemark: KMLFeature {
     }
 }
 
-func map(element: Geometry, name: String?, description: String?) -> MKAnnotation? {
+func map(element: Geometry, name: String?, description: String?, styles: [KMLStyle]?) -> MKAnnotation? {
 
     if let polygon = element as? Polygon {
-        return KMLPolygon(coordinates: polygon.outerBoundaryIs.coordinates, count: polygon.outerBoundaryIs.coordinates.count, interiorPolygons: nil)
+        let poly = KMLPolygon(coordinates: polygon.outerBoundaryIs.coordinates, count: polygon.outerBoundaryIs.coordinates.count, interiorPolygons: nil)
+        poly.styles = styles ?? []
+        return poly
     } else if let point = element as? Point {
         return KMLAnnotation(coordinate: point.coordinate, title: name ?? "", subtitle: description ?? "")
     }
