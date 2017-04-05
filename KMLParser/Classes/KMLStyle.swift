@@ -13,6 +13,13 @@ protocol KMLStyleable {
     var styles: [KMLStyle] { get set }
 }
 
+extension KMLStyleable {
+    mutating func add(styles: [KMLStyle]) -> KMLStyleable {
+        self.styles.append(contentsOf: styles)
+        return self
+    }
+}
+
 enum KMLStyle {
     case
         line(color: UIColor, width: CGFloat),
