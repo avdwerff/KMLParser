@@ -1,5 +1,16 @@
 # KMLParser
-Swift KML parser base on the (NS)XMLParser found in Foundation
+Swift KML parser based on the (NS)XMLParser found in Foundation.
+
+Currently KML features supported:
+- Polygon
+- Point
+- MultiGeometry
+
+Soon support for:
+- Polyline
+- Polygon with interiorPolygons
+- Circle
+
 # KMLParser
 
 [![CI Status](http://img.shields.io/travis/avdwerff/KMLParser.svg?style=flat)](https://travis-ci.org/avdwerff/KMLParser)
