@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		486AC1FF6F2CB7020F1A9A0C /* Pods_KMLParser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8917E55DBD301CE5EBE417 /* Pods_KMLParser_Example.framework */; };
+		499FF90A1E962A100096B11A /* circle.kml in Resources */ = {isa = PBXBuildFile; fileRef = 499FF9091E962A100096B11A /* circle.kml */; };
 		49A5002E1E93EABF00D053D5 /* World_Country_Borders.kml in Resources */ = {isa = PBXBuildFile; fileRef = 49A5002A1E93EABF00D053D5 /* World_Country_Borders.kml */; };
 		49A500331E93EB0C00D053D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500311E93EB0C00D053D5 /* AppDelegate.swift */; };
 		49A500341E93EB0C00D053D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500321E93EB0C00D053D5 /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 		258C22865ABCAE8C896493EF /* Pods_KMLParser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KMLParser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D16CA6DA6A408BA349A7A8 /* Pods-KMLParser_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMLParser_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KMLParser_Tests/Pods-KMLParser_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		403AADFB98D9194FE6B2AECA /* Pods-KMLParser_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMLParser_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KMLParser_Tests/Pods-KMLParser_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		499FF9091E962A100096B11A /* circle.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = circle.kml; sourceTree = "<group>"; };
 		49A5002A1E93EABF00D053D5 /* World_Country_Borders.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = World_Country_Borders.kml; sourceTree = "<group>"; };
 		49A500301E93EB0C00D053D5 /* KMLParser_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KMLParser_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		49A500311E93EB0C00D053D5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		607FACD21AFB9204008FA782 /* Example for KMLParser */ = {
 			isa = PBXGroup;
 			children = (
+				499FF9091E962A100096B11A /* circle.kml */,
 				49A500311E93EB0C00D053D5 /* AppDelegate.swift */,
 				49A500321E93EB0C00D053D5 /* ViewController.swift */,
 				49A5002A1E93EABF00D053D5 /* World_Country_Borders.kml */,
@@ -255,6 +258,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				49A5002E1E93EABF00D053D5 /* World_Country_Borders.kml in Resources */,
+				499FF90A1E962A100096B11A /* circle.kml in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);

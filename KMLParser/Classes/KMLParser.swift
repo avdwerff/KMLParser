@@ -213,7 +213,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
         
             if let coords = kmlObjectLookup[.coordinates] as? KMLCoordValue {
                 
-                guard coords.coords[0] == coords.coords[coords.coords.count-1]  else {
+                guard coords.coords[0] == coords.coords[coords.coords.count-1] else {
                     return
                 }
             
