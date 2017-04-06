@@ -55,6 +55,7 @@ enum KMLElement: String {
         coordinates = "coordinates",
         styleMap = "StyleMap",
         lineStyle = "LineStyle",
+        lineString = "LineString",
         color = "color",
         width = "width",
         style = "Style",
@@ -96,6 +97,13 @@ struct Point: Geometry {
         return element == .point
     }
     let coordinate: CLLocationCoordinate2D
+}
+
+struct LinearString: Geometry {
+    func `is`(a element: KMLElement) -> Bool {
+        return element == .lineString
+    }
+    let coordinates: [CLLocationCoordinate2D]
 }
 
 /// LinearRing
@@ -157,6 +165,10 @@ struct Placemark: KMLFeature {
             )
             poly.styles = styles ?? []
             return [poly]
+        } else if let line = geometry as? LinearString {
+            let polyLine = KMLLineString(coordinates: line.coordinates, count: line.coordinates.count)
+            polyLine.styles = styles ?? []
+            return [polyLine]
         } else if let point = geometry as? Point {
             return [KMLAnnotation(coordinate: point.coordinate, title: self.name ?? "", subtitle: self.description ?? "")]
         } else if let multi = geometry as? MultiGeometry {

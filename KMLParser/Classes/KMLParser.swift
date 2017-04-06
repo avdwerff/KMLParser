@@ -181,8 +181,8 @@ open class KMLParser: NSObject, XMLParserDelegate {
                 placemark.description = description.value
                 kmlObjectLookup.removeValue(forKey: .description)
             }
-            if let styleId = kmlObjectLookup[.styleUrl] as? KMLStringValue {
-                placemark.styleId = styleId.value
+            if let styleUrl = kmlObjectLookup[.styleUrl] as? KMLStringValue {
+                placemark.styleId = styleUrl.value
                 kmlObjectLookup.removeValue(forKey: .styleUrl)
             }
             features.append(placemark)
@@ -225,6 +225,14 @@ open class KMLParser: NSObject, XMLParserDelegate {
                 guard coords.coords.count > 0 else { return }
                 kmlObjectLookup[.geometry] = Point(coordinate: coords.coords[0])
                 kmlObjectLookup.removeValue(forKey: .coordinates)
+            }
+        case .lineString:
+            defer {
+                kmlObjectLookup.removeValue(forKey: .coordinates)
+            }
+            if let coords = kmlObjectLookup[.coordinates] as? KMLCoordValue {
+                guard coords.coords.count > 0 else { return }
+                kmlObjectLookup[.geometry] = LinearString(coordinates: coords.coords)
             }
         case .lineStyle:
             defer {

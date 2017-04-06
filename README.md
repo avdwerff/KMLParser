@@ -1,15 +1,15 @@
 # KMLParser
 Swift KML parser based on the (NS)XMLParser found in Foundation.
+The implementation is inspired by https://github.com/asus4/Kml.swift, but without the need of third party frameworks.
 
 Currently KML features supported:
 - Polygon
 - Point
 - MultiGeometry
+- LineString
 
 Soon support for:
-- Polyline
 - Polygon with interiorPolygons
-- Circle
 
 # KMLParser
 

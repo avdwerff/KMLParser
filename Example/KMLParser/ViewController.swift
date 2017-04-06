@@ -21,7 +21,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     private func setup() {
         
-        if let zones = Bundle.main.url(forResource: "circle", withExtension: "kml") {
+        if let zones = Bundle.main.url(forResource: "line", withExtension: "kml") {
 //        if let zones = Bundle.main.url(forResource: "World_Country_Borders", withExtension: "kml") {
             do {
                 
@@ -48,6 +48,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
         if let overlay = overlay as? KMLPolygon,
             let renderer = overlay.renderer() as? MKPolygonRenderer {
             //renderer.fillColor = UIColor.blue
+            return renderer
+        } else if let overlay = overlay as? KMLLineString,
+            let renderer = overlay.renderer() as? MKPolylineRenderer {
             return renderer
         }
         return MKOverlayRenderer()

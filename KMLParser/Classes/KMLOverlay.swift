@@ -57,11 +57,27 @@ open class KMLPolygon: MKPolygon, KMLOverlay, KMLStyleable {
     
 }
 
-open class KMLCircle: MKCircle, KMLOverlay, KMLStyleable {
+open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
+    
     var styles: [KMLStyle] = []
     
-    func renderer() -> MKOverlayRenderer {
-        let renderer = MKCircleRenderer(circle: self)
+    var lineWidth: CGFloat = 0
+    
+    var strokeColor: UIColor = UIColor.clear
+    
+    open func renderer() -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(polyline: self)
+        for style in styles {
+            switch style {
+            case .line(let color, let width):
+                self.lineWidth = width
+                self.strokeColor = color
+            default:
+                break
+            }
+        }
+        renderer.lineWidth = lineWidth
+        renderer.strokeColor = strokeColor
         return renderer
     }
 }
