@@ -164,6 +164,8 @@ struct Placemark: KMLFeature {
                 interiorPolygons: nil
             )
             poly.styles = styles ?? []
+            poly.title = self.name
+            poly.subtitle = self.description
             return [poly]
         } else if let line = geometry as? LinearString {
             let polyLine = KMLLineString(coordinates: line.coordinates, count: line.coordinates.count)
