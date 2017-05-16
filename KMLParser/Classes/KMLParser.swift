@@ -288,7 +288,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
             if let bool = string.toBool() {
                 kmlObjectLookup[.outline] = KMLBoolValue(value: bool)
             }
-        case .some(.name):
+        case .some(.name) where string.characters.count > 1:
             kmlObjectLookup[.name] = KMLStringValue(value: string)
         case .some(.description):
             kmlObjectLookup[.description] = KMLStringValue(value: string)
