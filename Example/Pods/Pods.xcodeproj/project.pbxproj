@@ -12,6 +12,7 @@
 		25F557B34CF0D5AA7EA3CEBE1E913636 /* KMLParser-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0771E9D634B7AFC3302B2BCAC45D92AB /* KMLParser-dummy.m */; };
 		38B94910E934A7C5FE7C9855E05878C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		3AFF63F6142FFE396BBAD457D08082D4 /* Pods-KMLParser_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F49D1525D520976BB97E448BB6B2C4 /* Pods-KMLParser_Example-dummy.m */; };
+		49A156351ED5590A0049DAB0 /* KMLOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A156341ED5590A0049DAB0 /* KMLOptions.swift */; };
 		49A5001F1E93EA5700D053D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500161E93EA5700D053D5 /* Extensions.swift */; };
 		49A500201E93EA5700D053D5 /* KML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500171E93EA5700D053D5 /* KML.swift */; };
 		49A500211E93EA5700D053D5 /* KMLAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500181E93EA5700D053D5 /* KMLAnnotation.swift */; };
@@ -43,6 +44,7 @@
 		15F49D1525D520976BB97E448BB6B2C4 /* Pods-KMLParser_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KMLParser_Example-dummy.m"; sourceTree = "<group>"; };
 		27C877949F82C474EC5AF0DC24A56306 /* KMLParser-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMLParser-prefix.pch"; sourceTree = "<group>"; };
 		470D1F6FB79EE092ED13C8AA161BF684 /* KMLParser-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMLParser-umbrella.h"; sourceTree = "<group>"; };
+		49A156341ED5590A0049DAB0 /* KMLOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMLOptions.swift; sourceTree = "<group>"; };
 		49A500161E93EA5700D053D5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49A500171E93EA5700D053D5 /* KML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KML.swift; sourceTree = "<group>"; };
 		49A500181E93EA5700D053D5 /* KMLAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMLAnnotation.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				49A5001C1E93EA5700D053D5 /* KMLParser.swift */,
 				49A5001D1E93EA5700D053D5 /* KMLStyle.swift */,
 				49A5001E1E93EA5700D053D5 /* Result.swift */,
+				49A156341ED5590A0049DAB0 /* KMLOptions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				49A500271E93EA5700D053D5 /* Result.swift in Sources */,
 				49A500201E93EA5700D053D5 /* KML.swift in Sources */,
 				49A500211E93EA5700D053D5 /* KMLAnnotation.swift in Sources */,
+				49A156351ED5590A0049DAB0 /* KMLOptions.swift in Sources */,
 				49A500221E93EA5700D053D5 /* KMLError.swift in Sources */,
 				49A500251E93EA5700D053D5 /* KMLParser.swift in Sources */,
 				25F557B34CF0D5AA7EA3CEBE1E913636 /* KMLParser-dummy.m in Sources */,

@@ -65,6 +65,9 @@ enum KMLElement: String {
         pair = "Pair",
         key = "key",
     
+        //extension
+        circle = "Circle",
+    
         //abstract
         geometry = "Geometry"
     
@@ -115,6 +118,14 @@ struct LinearRing: Geometry {
 }
 
 /// Polygon
+struct Circle: Geometry {
+    func `is`(a element: KMLElement) -> Bool {
+        return element == .circle
+    }
+    let geo: (center: CLLocationCoordinate2D, radius: CLLocationDistance)
+}
+
+/// Polygon
 struct Polygon: Geometry {
     func `is`(a element: KMLElement) -> Bool {
         return element == .polygon
@@ -149,10 +160,12 @@ protocol KMLFeature {
 
 /// Placemark
 struct Placemark: KMLFeature {
+    
     var name: String?
     var description: String?
     var geometry: Geometry?
     var styleId: String?
+    
     func annotation(styles: [KMLStyle]?) -> [MKAnnotation]? {
         
         guard let geometry = geometry else { return nil }
@@ -164,6 +177,8 @@ struct Placemark: KMLFeature {
                 interiorPolygons: nil
             )
             poly.styles = styles ?? []
+            poly.title = self.name
+            poly.subtitle = self.description
             return [poly]
         } else if let line = geometry as? LinearString {
             let polyLine = KMLLineString(coordinates: line.coordinates, count: line.coordinates.count)
@@ -171,6 +186,15 @@ struct Placemark: KMLFeature {
             return [polyLine]
         } else if let point = geometry as? Point {
             return [KMLAnnotation(coordinate: point.coordinate, title: self.name ?? "", subtitle: self.description ?? "")]
+        } else if let circle = geometry as? Circle {
+            
+            let circleElement = KMLCircle(center: circle.geo.center, radius: circle.geo.radius)
+            circleElement.styles = styles ?? []
+            circleElement.title = self.name
+            circleElement.subtitle = self.description
+            
+            return [circleElement]
+            
         } else if let multi = geometry as? MultiGeometry {
             return
                 multi.elements.flatMap({ (element) -> MKAnnotation? in

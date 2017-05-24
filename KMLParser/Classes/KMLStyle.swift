@@ -24,6 +24,7 @@ enum KMLStyle {
     case
         line(color: UIColor, width: CGFloat),
         poly(color: UIColor, fill: Bool, outline: Bool),
+        circle(color: UIColor, fill: Bool, outline: Bool),
         balloon(bgColor: UIColor, textColor: UIColor),
         icon(urlString: String)
 }

@@ -13,3 +13,15 @@ extension XMLParser {
         case polygonError(String)
     }
 }
+
+
+public extension KMLParser {
+    
+    /// Error
+    public func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        if let completion = completion {
+            completion(ResultType.failure(reason: Reason.parseError(parseError)))
+        }
+    }
+    
+}
