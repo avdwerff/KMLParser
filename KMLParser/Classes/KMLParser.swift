@@ -15,6 +15,9 @@ open class KMLParser: NSObject, XMLParserDelegate {
     // actual parser
     private var parser: XMLParser?
     
+    // options
+    private var options: KMLOptions?
+    
     // lookup table during parsing
     private var kmlObjectLookup: [KMLElement: KMLValue] = [:]
     
@@ -45,7 +48,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
     private var annotations: [MKAnnotation] = []
     
     /// result handler
-    private var completion: Result?
+    var completion: Result?
     
     /// private initialiser, use KMLParser.parse to initiate a parse session
     private init(data: Data) {
@@ -56,9 +59,11 @@ open class KMLParser: NSObject, XMLParserDelegate {
     
     /// parse: Parses a kml document and returns a `Result`
     /// - Parameter data: A Data object representing the KML xml content
-    public static func parse(with data: Data, completion: @escaping Result) {
+    /// - Parameter options
+    public static func parse(with data: Data, options: KMLOptions?, completion: @escaping Result) {
         let kmlParser = KMLParser(data: data)
         kmlParser.parser?.delegate = kmlParser
+        kmlParser.options = options
         kmlParser.completion = completion
         kmlParser.parser?.parse()
     }
@@ -223,7 +228,12 @@ open class KMLParser: NSObject, XMLParserDelegate {
         case .point:
             if let coords = kmlObjectLookup[.coordinates] as? KMLCoordValue{
                 guard coords.coords.count > 0 else { return }
-                kmlObjectLookup[.geometry] = Point(coordinate: coords.coords[0])
+                
+                if let pointToCircleRadius = options?.pointToCircleRadius, pointToCircleRadius > 0 {
+                    kmlObjectLookup[.geometry] = Circle(geo: (center: coords.coords[0], radius: pointToCircleRadius))
+                } else {
+                    kmlObjectLookup[.geometry] = Point(coordinate: coords.coords[0])
+                }
                 kmlObjectLookup.removeValue(forKey: .coordinates)
             }
         case .lineString:
@@ -327,13 +337,6 @@ open class KMLParser: NSObject, XMLParserDelegate {
             kmlObjectLookup[.coordinates] = KMLCoordValue(coords: coords)
         default:
             break
-        }
-    }
-    
-    /// Error
-    public func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        if let completion = completion {
-            completion(ResultType.failure(reason: Reason.parseError(parseError)))
         }
     }
     

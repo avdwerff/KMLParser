@@ -12,7 +12,8 @@ import UIKit
 
 
 protocol KMLOverlay {
-    func renderer() -> MKOverlayRenderer
+    associatedtype Renderer: MKOverlayRenderer
+    func renderer() -> Renderer
 }
 
 /// # KMLPolygon
@@ -30,7 +31,7 @@ open class KMLPolygon: MKPolygon, KMLOverlay, KMLStyleable {
     
     var fillColor: UIColor = UIColor.clear
     
-    open func renderer() -> MKOverlayRenderer {
+    open func renderer() -> MKPolygonRenderer {
         let renderer = MKPolygonRenderer(polygon: self)
         for style in styles {
             switch style {
@@ -65,7 +66,7 @@ open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
     
     var strokeColor: UIColor = UIColor.clear
     
-    open func renderer() -> MKOverlayRenderer {
+    open func renderer() -> MKPolylineRenderer {
         let renderer = MKPolylineRenderer(polyline: self)
         for style in styles {
             switch style {
@@ -78,6 +79,46 @@ open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
         }
         renderer.lineWidth = lineWidth
         renderer.strokeColor = strokeColor
+        return renderer
+    }
+}
+
+open class KMLCircle: MKCircle, KMLOverlay, KMLStyleable {
+
+    var styles: [KMLStyle] = []
+    
+    var lineWidth: CGFloat = 0
+    
+    var strokeColor: UIColor = UIColor.clear
+    
+    var fillColor: UIColor = UIColor.clear
+    
+    var outline = true
+    
+    var fill = true
+    
+    open func renderer() -> MKCircleRenderer {
+        let renderer = MKCircleRenderer(circle: self)
+        for style in styles {
+            switch style {
+            case .line(let color, let width):
+                self.lineWidth = width
+                self.strokeColor = color
+            case .circle(let color, let fill, let outline):
+                self.outline = outline
+                self.fill = fill
+                self.fillColor = color
+            default:
+                break
+            }
+        }
+        if fill {
+            renderer.fillColor = fillColor
+        }
+        if outline {
+            renderer.lineWidth = lineWidth
+            renderer.strokeColor = strokeColor
+        }
         return renderer
     }
 }

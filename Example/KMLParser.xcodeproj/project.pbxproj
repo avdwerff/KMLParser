@@ -10,6 +10,7 @@
 		486AC1FF6F2CB7020F1A9A0C /* Pods_KMLParser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8917E55DBD301CE5EBE417 /* Pods_KMLParser_Example.framework */; };
 		499FF90A1E962A100096B11A /* circle.kml in Resources */ = {isa = PBXBuildFile; fileRef = 499FF9091E962A100096B11A /* circle.kml */; };
 		499FF90E1E96DBC80096B11A /* line.kml in Resources */ = {isa = PBXBuildFile; fileRef = 499FF90D1E96DBC80096B11A /* line.kml */; };
+		49A156371ED578280049DAB0 /* point.kml in Resources */ = {isa = PBXBuildFile; fileRef = 49A156361ED578280049DAB0 /* point.kml */; };
 		49A5002E1E93EABF00D053D5 /* borders.kml in Resources */ = {isa = PBXBuildFile; fileRef = 49A5002A1E93EABF00D053D5 /* borders.kml */; };
 		49A500331E93EB0C00D053D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500311E93EB0C00D053D5 /* AppDelegate.swift */; };
 		49A500341E93EB0C00D053D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A500321E93EB0C00D053D5 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		403AADFB98D9194FE6B2AECA /* Pods-KMLParser_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMLParser_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KMLParser_Tests/Pods-KMLParser_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		499FF9091E962A100096B11A /* circle.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = circle.kml; sourceTree = "<group>"; };
 		499FF90D1E96DBC80096B11A /* line.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = line.kml; sourceTree = "<group>"; };
+		49A156361ED578280049DAB0 /* point.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = point.kml; sourceTree = "<group>"; };
 		49A5002A1E93EABF00D053D5 /* borders.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = borders.kml; sourceTree = "<group>"; };
 		49A500301E93EB0C00D053D5 /* KMLParser_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KMLParser_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		49A500311E93EB0C00D053D5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				49A500301E93EB0C00D053D5 /* KMLParser_Example-Bridging-Header.h */,
+				49A156361ED578280049DAB0 /* point.kml */,
 			);
 			name = "Example for KMLParser";
 			path = KMLParser;
@@ -264,6 +267,7 @@
 				499FF90A1E962A100096B11A /* circle.kml in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				499FF90E1E96DBC80096B11A /* line.kml in Resources */,
+				49A156371ED578280049DAB0 /* point.kml in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

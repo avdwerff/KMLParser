@@ -21,7 +21,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     private func setup() {
         
-        if let zones = Bundle.main.url(forResource: "line", withExtension: "kml") {
+        if let zones = Bundle.main.url(forResource: "point", withExtension: "kml") {
 //        if let zones = Bundle.main.url(forResource: "World_Country_Borders", withExtension: "kml") {
             do {
                 
@@ -35,8 +35,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     private func parse(kml: Data) {
-        KMLParser.parse(with: kml) { [weak self] (result) in
-            if case let .success(annotations, overlays) = result {
+        let options = KMLOptions(pointToCircleRadius: 1000)
+        KMLParser.parse(with: kml, options: options) { [weak self] (result) in
+            if case let .success(_, overlays) = result {
                 self?.mapView.addOverlays(overlays)
             }
         }
@@ -45,12 +46,16 @@ class ViewController: UIViewController, MKMapViewDelegate {
     // MARK: - MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let overlay = overlay as? KMLPolygon,
-            let renderer = overlay.renderer() as? MKPolygonRenderer {
+        if let overlay = overlay as? KMLPolygon {
             //renderer.fillColor = UIColor.blue
-            return renderer
-        } else if let overlay = overlay as? KMLLineString,
-            let renderer = overlay.renderer() as? MKPolylineRenderer {
+            return overlay.renderer()
+        } else if let overlay = overlay as? KMLLineString {
+            return overlay.renderer()
+        } else if let overlay = overlay as? KMLCircle {
+            let renderer = overlay.renderer()
+            renderer.fillColor = UIColor.green
+            renderer.strokeColor = UIColor.cyan
+            renderer.lineWidth = 1
             return renderer
         }
         return MKOverlayRenderer()
