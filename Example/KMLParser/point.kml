@@ -1,56 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
     <Document>
-<name>Point</name>
-<description><![CDATA[ Point ]]></description>
-<Folder>
-
-<Placemark>
-				<name>Lorum ipsum epsum . </name>
+        <name>Point</name>
+        <description><![CDATA[ Point ]]></description>
+        <Folder>
+            <Placemark>
+                <name>Lorum ipsum epsum . </name>
                 <description><![CDATA[Lorem ipsum ]]></description>
                 <styleUrl>#icon-1899-DB4436</styleUrl>
-                
                 <Point>
                     <coordinates>5.677222222222213,53.45166666666667,0.0</coordinates>
                 </Point>
-</Placemark>
-
-</Folder>
-
-<Style id='icon-1899-DB4436-normal'>
-    <IconStyle>
-        <color>ff3644DB</color>
-        <scale>1.0</scale>
-        <Icon>
-            <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-    </IconStyle>
-    <LabelStyle>
-        <scale>0.0</scale>
-    </LabelStyle>
-</Style>
-<Style id='icon-1899-DB4436-highlight'>
-    <IconStyle>
-        <color>ff3644DB</color>
-        <scale>1.0</scale>
-        <Icon>
-            <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-    </IconStyle>
-    <LabelStyle>
-        <scale>1.0</scale>
-    </LabelStyle>
-</Style>
-<StyleMap id='icon-1899-DB4436'>
-    <Pair>
-        <key>normal</key>
-        <styleUrl>#icon-1899-DB4436-normal</styleUrl>
-    </Pair>
-    <Pair>
-        <key>highlight</key>
-        <styleUrl>#icon-1899-DB4436-highlight</styleUrl>
-    </Pair>
-</StyleMap>
-
+            </Placemark>
+        </Folder>
     </Document>
 </kml>
