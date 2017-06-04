@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KMLParser'
-  s.version          = '0.5.1'
+  s.version          = '0.5.2'
   s.summary          = 'Swift KML parser base on the (NS)XMLParser found in Foundation'
 
 

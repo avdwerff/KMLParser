@@ -178,6 +178,9 @@ open class KMLParser: NSObject, XMLParserDelegate {
         }
         
         switch element {
+        case .extendedData:
+            //reset extended data tag
+            extendedData = [:]
         case .style:
             currentStyleId = nil
         case .placemark:
