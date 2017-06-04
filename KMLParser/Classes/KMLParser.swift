@@ -24,7 +24,13 @@ open class KMLParser: NSObject, XMLParserDelegate {
     // styles
     private var styles: [String: [KMLStyle]] = [:]
     
+    // style map
     private var styleMaps: [String: [String: String]] = [:]
+    
+    // extended data
+    private var extendedData: [String: String] = [:]
+    
+    private var currentDataKey: String?
     
     // current style id
     private var currentStyleId: String?
@@ -143,6 +149,12 @@ open class KMLParser: NSObject, XMLParserDelegate {
             let hashedId = "#\(id)"
             currentStyleMapId = hashedId
             styleMaps[hashedId] = [:]
+        case .extendedData:
+            //reset start with extended data tag
+            extendedData = [:]
+        case .data:
+            guard let name = attributeDict["name"] else { return }
+            currentDataKey = name
         default:
             break
         }
@@ -189,6 +201,9 @@ open class KMLParser: NSObject, XMLParserDelegate {
             if let styleUrl = kmlObjectLookup[.styleUrl] as? KMLStringValue {
                 placemark.styleId = styleUrl.value
                 kmlObjectLookup.removeValue(forKey: .styleUrl)
+            }
+            if extendedData.count > 0 {
+                placemark.extendedData = extendedData
             }
             features.append(placemark)
         case .polygon:
@@ -283,6 +298,10 @@ open class KMLParser: NSObject, XMLParserDelegate {
     /// Parse value
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
         switch currentElement {
+        case .some(.value):
+            if let key = currentDataKey {
+                extendedData[key] = string
+            }
         case .some(.color):
             let color = UIColor(hex: string)
             kmlObjectLookup[.color] = KMLColorValue(value: color)

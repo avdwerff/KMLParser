@@ -6,6 +6,11 @@
         <Folder>
             <Placemark>
                 <name>Lorum ipsum epsum . </name>
+                <ExtendedData>
+                    <Data name="key">
+                        <value>value</value>
+                    </Data>
+                </ExtendedData>
                 <description><![CDATA[Lorem ipsum ]]></description>
                 <styleUrl>#icon-1899-DB4436</styleUrl>
                 <Point>

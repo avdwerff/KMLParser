@@ -155,6 +155,7 @@ protocol KMLFeature {
     var description: String? { get set }
     func annotation(styles: [KMLStyle]?) -> [MKAnnotation]?
     var styleId: String? { get set }
+    var extendedData: [String: String]? { get set }
 }
 
 
@@ -165,6 +166,7 @@ struct Placemark: KMLFeature {
     var description: String?
     var geometry: Geometry?
     var styleId: String?
+    var extendedData: [String: String]?
     
     func annotation(styles: [KMLStyle]?) -> [MKAnnotation]? {
         
@@ -179,19 +181,24 @@ struct Placemark: KMLFeature {
             poly.styles = styles ?? []
             poly.title = self.name
             poly.subtitle = self.description
+            poly.extendedData = self.extendedData
             return [poly]
         } else if let line = geometry as? LinearString {
             let polyLine = KMLLineString(coordinates: line.coordinates, count: line.coordinates.count)
             polyLine.styles = styles ?? []
+            polyLine.extendedData = self.extendedData
             return [polyLine]
         } else if let point = geometry as? Point {
-            return [KMLAnnotation(coordinate: point.coordinate, title: self.name ?? "", subtitle: self.description ?? "")]
+            let point = KMLAnnotation(coordinate: point.coordinate, title: self.name ?? "", subtitle: self.description ?? "")
+            point.extendedData = self.extendedData
+            return [point]
         } else if let circle = geometry as? Circle {
             
             let circleElement = KMLCircle(center: circle.geo.center, radius: circle.geo.radius)
             circleElement.styles = styles ?? []
             circleElement.title = self.name
             circleElement.subtitle = self.description
+            circleElement.extendedData = self.extendedData
             
             return [circleElement]
             
