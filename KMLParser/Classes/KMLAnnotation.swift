@@ -11,6 +11,8 @@ import MapKit
 
 open class KMLAnnotation: NSObject, MKAnnotation {
     
+    public var extendedData: [String: String]?
+    
     public var coordinate: CLLocationCoordinate2D
     public var title: String?
     public var subtitle: String?

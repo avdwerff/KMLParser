@@ -19,6 +19,8 @@ protocol KMLOverlay {
 /// # KMLPolygon
 open class KMLPolygon: MKPolygon, KMLOverlay, KMLStyleable {
     
+    var extendedData: [String: String]?
+    
     var styles: [KMLStyle] = []
     
     var outline = true
@@ -60,6 +62,8 @@ open class KMLPolygon: MKPolygon, KMLOverlay, KMLStyleable {
 
 open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
     
+    var extendedData: [String: String]?
+    
     var styles: [KMLStyle] = []
     
     var lineWidth: CGFloat = 0
@@ -85,6 +89,8 @@ open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
 
 open class KMLCircle: MKCircle, KMLOverlay, KMLStyleable {
 
+    var extendedData: [String: String]?
+    
     var styles: [KMLStyle] = []
     
     var lineWidth: CGFloat = 0

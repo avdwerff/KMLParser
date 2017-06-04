@@ -21,8 +21,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     private func setup() {
         
-        if let zones = Bundle.main.url(forResource: "point", withExtension: "kml") {
-//        if let zones = Bundle.main.url(forResource: "World_Country_Borders", withExtension: "kml") {
+        if let zones = Bundle.main.url(forResource: "borders", withExtension: "kml") {
             do {
                 
                 let kml = try Data(contentsOf: zones)
@@ -35,7 +34,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     private func parse(kml: Data) {
-        let options = KMLOptions(pointToCircleRadius: 1000)
+        let options = KMLOptions(pointToCircleRadius: 10000)
         KMLParser.parse(with: kml, options: options) { [weak self] (result) in
             if case let .success(_, overlays) = result {
                 self?.mapView.addOverlays(overlays)
