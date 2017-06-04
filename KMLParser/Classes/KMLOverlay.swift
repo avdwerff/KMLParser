@@ -19,7 +19,7 @@ protocol KMLOverlay {
 /// # KMLPolygon
 open class KMLPolygon: MKPolygon, KMLOverlay, KMLStyleable {
     
-    var extendedData: [String: String]?
+    public var extendedData: [String: String]?
     
     var styles: [KMLStyle] = []
     
@@ -62,7 +62,7 @@ open class KMLPolygon: MKPolygon, KMLOverlay, KMLStyleable {
 
 open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
     
-    var extendedData: [String: String]?
+    public var extendedData: [String: String]?
     
     var styles: [KMLStyle] = []
     
@@ -89,7 +89,7 @@ open class KMLLineString: MKPolyline, KMLOverlay, KMLStyleable {
 
 open class KMLCircle: MKCircle, KMLOverlay, KMLStyleable {
 
-    var extendedData: [String: String]?
+    public var extendedData: [String: String]?
     
     var styles: [KMLStyle] = []
     
