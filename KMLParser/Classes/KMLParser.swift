@@ -178,9 +178,6 @@ open class KMLParser: NSObject, XMLParserDelegate {
         }
         
         switch element {
-        case .extendedData:
-            //reset extended data tag
-            extendedData = [:]
         case .style:
             currentStyleId = nil
         case .placemark:
@@ -207,6 +204,8 @@ open class KMLParser: NSObject, XMLParserDelegate {
             }
             if extendedData.count > 0 {
                 placemark.extendedData = extendedData
+                //reset extended data tag
+                extendedData = [:]
             }
             features.append(placemark)
         case .polygon:
