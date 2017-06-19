@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		486AC1FF6F2CB7020F1A9A0C /* Pods_KMLParser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8917E55DBD301CE5EBE417 /* Pods_KMLParser_Example.framework */; };
+		491357141EF86D9D00E7FEA4 /* multiGeometry.kml in Resources */ = {isa = PBXBuildFile; fileRef = 491357131EF86D9D00E7FEA4 /* multiGeometry.kml */; };
 		499FF90A1E962A100096B11A /* circle.kml in Resources */ = {isa = PBXBuildFile; fileRef = 499FF9091E962A100096B11A /* circle.kml */; };
 		499FF90E1E96DBC80096B11A /* line.kml in Resources */ = {isa = PBXBuildFile; fileRef = 499FF90D1E96DBC80096B11A /* line.kml */; };
 		49A10C8A1EE49F2E007F8085 /* point.kml in Resources */ = {isa = PBXBuildFile; fileRef = 49A10C891EE49F2E007F8085 /* point.kml */; };
@@ -36,6 +37,7 @@
 		258C22865ABCAE8C896493EF /* Pods_KMLParser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KMLParser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D16CA6DA6A408BA349A7A8 /* Pods-KMLParser_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMLParser_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KMLParser_Tests/Pods-KMLParser_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		403AADFB98D9194FE6B2AECA /* Pods-KMLParser_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMLParser_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KMLParser_Tests/Pods-KMLParser_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		491357131EF86D9D00E7FEA4 /* multiGeometry.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = multiGeometry.kml; sourceTree = "<group>"; };
 		499FF9091E962A100096B11A /* circle.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = circle.kml; sourceTree = "<group>"; };
 		499FF90D1E96DBC80096B11A /* line.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = line.kml; sourceTree = "<group>"; };
 		49A10C891EE49F2E007F8085 /* point.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = point.kml; sourceTree = "<group>"; };
@@ -80,6 +82,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491357151EF86DF700E7FEA4 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				49A10C891EE49F2E007F8085 /* point.kml */,
+				499FF90D1E96DBC80096B11A /* line.kml */,
+				491357131EF86D9D00E7FEA4 /* multiGeometry.kml */,
+				49A156361ED578280049DAB0 /* point.kml */,
+				49A5002A1E93EABF00D053D5 /* borders.kml */,
+				499FF9091E962A100096B11A /* circle.kml */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -104,18 +119,14 @@
 		607FACD21AFB9204008FA782 /* Example for KMLParser */ = {
 			isa = PBXGroup;
 			children = (
-				49A10C891EE49F2E007F8085 /* point.kml */,
-				499FF90D1E96DBC80096B11A /* line.kml */,
-				499FF9091E962A100096B11A /* circle.kml */,
+				491357151EF86DF700E7FEA4 /* Examples */,
 				49A500311E93EB0C00D053D5 /* AppDelegate.swift */,
 				49A500321E93EB0C00D053D5 /* ViewController.swift */,
-				49A5002A1E93EABF00D053D5 /* borders.kml */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				49A500301E93EB0C00D053D5 /* KMLParser_Example-Bridging-Header.h */,
-				49A156361ED578280049DAB0 /* point.kml */,
 			);
 			name = "Example for KMLParser";
 			path = KMLParser;
@@ -265,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491357141EF86D9D00E7FEA4 /* multiGeometry.kml in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				49A5002E1E93EABF00D053D5 /* borders.kml in Resources */,
 				499FF90A1E962A100096B11A /* circle.kml in Resources */,

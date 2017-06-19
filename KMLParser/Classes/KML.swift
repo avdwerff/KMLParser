@@ -205,7 +205,7 @@ struct Placemark: KMLFeature {
         } else if let multi = geometry as? MultiGeometry {
             return
                 multi.elements.flatMap({ (element) -> MKAnnotation? in
-                    map(element: element, name: name, description: description, styles: styles)
+                    map(element: element, name: name, description: description, styles: styles, extendedData: extendedData)
                 })
         }
         
@@ -213,11 +213,14 @@ struct Placemark: KMLFeature {
     }
 }
 
-func map(element: Geometry, name: String?, description: String?, styles: [KMLStyle]?) -> MKAnnotation? {
+func map(element: Geometry, name: String?, description: String?, styles: [KMLStyle]?, extendedData: [String: String]?) -> MKAnnotation? {
 
     if let polygon = element as? Polygon {
         let poly = KMLPolygon(coordinates: polygon.outerBoundaryIs.coordinates, count: polygon.outerBoundaryIs.coordinates.count, interiorPolygons: nil)
         poly.styles = styles ?? []
+        poly.title = name
+        poly.subtitle = description
+        poly.extendedData = extendedData
         return poly
     } else if let point = element as? Point {
         return KMLAnnotation(coordinate: point.coordinate, title: name ?? "", subtitle: description ?? "")

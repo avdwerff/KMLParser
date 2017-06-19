@@ -21,7 +21,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     private func setup() {
         
-        if let zones = Bundle.main.url(forResource: "borders", withExtension: "kml") {
+        if let zones = Bundle.main.url(forResource: "multiGeometry", withExtension: "kml") {
             do {
                 
                 let kml = try Data(contentsOf: zones)
@@ -46,8 +46,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let overlay = overlay as? KMLPolygon {
-            //renderer.fillColor = UIColor.blue
-            return overlay.renderer()
+            let renderer = overlay.renderer()
+            renderer.fillColor = UIColor.blue.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.black
+            renderer.lineWidth = 1
+            return renderer
         } else if let overlay = overlay as? KMLLineString {
             return overlay.renderer()
         } else if let overlay = overlay as? KMLCircle {
@@ -60,5 +63,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
         return MKOverlayRenderer()
     }
 
+    func mapView(_ mapView: MKMapView, didAdd renderers: [MKOverlayRenderer]) {
+        if let rect = mapView.overlays.first?.boundingMapRect{
+            mapView.visibleMapRect = mapView.mapRectThatFits(rect)
+        }
+    }
 }
 
