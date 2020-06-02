@@ -204,7 +204,7 @@ struct Placemark: KMLFeature {
             
         } else if let multi = geometry as? MultiGeometry {
             return
-                multi.elements.flatMap({ (element) -> MKAnnotation? in
+                multi.elements.compactMap({ (element) -> MKAnnotation? in
                     map(element: element, name: name, description: description, styles: styles, extendedData: extendedData)
                 })
         }
