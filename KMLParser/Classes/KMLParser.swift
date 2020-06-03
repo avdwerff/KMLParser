@@ -84,7 +84,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
     
     /// End parsing
     public func parserDidEndDocument(_ parser: XMLParser) {
-        _ = features.flatMap { [weak self] feature -> [MKAnnotation]? in
+        _ = features.compactMap { [weak self] feature -> [MKAnnotation]? in
             
             ///guard let `self` = self else { return annotations
             
@@ -178,9 +178,6 @@ open class KMLParser: NSObject, XMLParserDelegate {
         }
         
         switch element {
-        case .extendedData:
-            //reset extended data tag
-            extendedData = [:]
         case .style:
             currentStyleId = nil
         case .placemark:
@@ -207,6 +204,8 @@ open class KMLParser: NSObject, XMLParserDelegate {
             }
             if extendedData.count > 0 {
                 placemark.extendedData = extendedData
+                //reset extended data tag
+                extendedData = [:]
             }
             features.append(placemark)
         case .polygon:
@@ -320,7 +319,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
             if let bool = string.toBool() {
                 kmlObjectLookup[.outline] = KMLBoolValue(value: bool)
             }
-        case .some(.name) where string.characters.count > 1:
+        case .some(.name) where string.count > 1:
             kmlObjectLookup[.name] = KMLStringValue(value: string)
         case .some(.description):
             kmlObjectLookup[.description] = KMLStringValue(value: string)
@@ -349,8 +348,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
         case .some(.coordinates):
             //coordinates can be removed
             //let path = Array(currentElementPath.dropLast())
-            let type = type(of: self)
-            let coords = type.parseCoordinates(with: string)
+            let coords = KMLParser.parseCoordinates(with: string)
             
             guard coords.count > 0 else {
                 return

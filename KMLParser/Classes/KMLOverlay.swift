@@ -11,9 +11,10 @@ import MapKit
 import UIKit
 
 
-protocol KMLOverlay {
+public protocol KMLOverlay {
     associatedtype Renderer: MKOverlayRenderer
     func renderer() -> Renderer
+    var extendedData: [String: String]? { set get }
 }
 
 /// # KMLPolygon
