@@ -87,7 +87,6 @@ open class KMLParser: NSObject, XMLParserDelegate {
         _ = features.compactMap { [weak self] feature -> [MKAnnotation]? in
             
             ///guard let `self` = self else { return annotations
-            
                 let styles = self?.styles(with: feature.styleId)
             
                 let annotations = feature.annotation(styles: styles)
@@ -266,14 +265,14 @@ open class KMLParser: NSObject, XMLParserDelegate {
                 kmlObjectLookup.removeValue(forKey: .width)
                 kmlObjectLookup.removeValue(forKey: .color)
             }
-            guard
-                let width = kmlObjectLookup[.width] as? KMLFloatValue,
-                let color = kmlObjectLookup[.color] as? KMLColorValue,
-                let id = currentStyleId
-                 else {
-                    return
-                }
-    
+            let width: KMLFloatValue = kmlObjectLookup[.width] as? KMLFloatValue ?? KMLFloatValue(value: 1.0)
+            let color: KMLColorValue = kmlObjectLookup[.color] as? KMLColorValue ?? KMLColorValue(value: UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+            if currentStyleId == nil {
+                let styleID = ""
+                currentStyleId = styleID
+                styles[styleID] = []
+            }
+            let id: String = currentStyleId ?? ""
             styles[id]?.append(KMLStyle.line(color: color.value, width: width.value))
         case .polyStyle:
             defer {
@@ -405,7 +404,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
         return coordinates
     }
     
-    /// 
+    ///
     private static func findParentGeometryElement(in path: KMLElementPath) -> KMLElement? {
         let reversedPath = path.reversed()
         for i in reversedPath.indices {
@@ -419,7 +418,7 @@ open class KMLParser: NSObject, XMLParserDelegate {
     ///
     private func styles(with styleId: String?) -> [KMLStyle]? {
         
-        guard let styleId = styleId else { return nil }
+        let styleId = styleId ?? ""
         
         let style = styleMaps[styleId]?["normal"] ?? styleId
         
